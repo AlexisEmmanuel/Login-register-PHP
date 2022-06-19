@@ -1,12 +1,16 @@
 <?php
 session_start();
 require_once 'config/database.php'; // Get database connection
+/* Verify if the user has logged in */
+if (isset($_SESSION['accredited'])) {
+  header('Location: index.php');
+}
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $errorReporter = null;
-  $userName = $_POST['userName']; // Register credentials
-  $userEmail = $_POST['userEmail'];
-  $userPass = $_POST['userPass'];
-  $userPassRepeat = $_POST['userPassRepeat'];
+  $userName = strip_tags($_POST['userName']); // Register credentials
+  $userEmail = strip_tags($_POST['userEmail']);
+  $userPass = strip_tags($_POST['userPass']);
+  $userPassRepeat = strip_tags($_POST['userPassRepeat']);
   if (empty($userName) || empty($userEmail) || empty($userPass) || empty($userPassRepeat)) {
     $errorReporter = 'Dont set empty spaces';
   } else {

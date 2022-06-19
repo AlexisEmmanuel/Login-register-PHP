@@ -1,6 +1,10 @@
 <?php
 session_start();
 require_once 'config/database.php';
+/* Verify if the user has logged in */
+if (isset($_SESSION['accredited'])) {
+  header('Location: index.php');
+}
 if($_SERVER['REQUEST_METHOD']=='POST'){
   $userEmail = $_POST['userEmail']; // Compile credentials
   $userPass = $_POST['userPass'];
