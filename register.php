@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'config/functions.php'; // get functions
 require_once 'config/database.php'; // Get database connection
 /* Verify if the user has logged in */
 if (isset($_SESSION['accredited'])) {
@@ -26,16 +27,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $result = $stmt->fetch();
       if($result != false) {
         $errorReporter = 'This email already registered';
-      } else { // Push credentials
-        $stmt = $conn->prepare(
-          "INSERT INTO `users` (`id`, `name`, `email`, `pass`) VALUES (NULL, :nameUser, :emailUser, :passUser);"
-        );
-        $stmt->execute(array(
-          'nameUser' => $userName,
-          'emailUser' => $userEmail,
-          'passUser' => $userPassRepeat
-        ));
-        header('Location: index.php');
+      } else { // Verificate Gmail
+        
+        $code = rand(1000, 9999);
+        verificateEmail($userEmail, $code, $userName);
+        $_SESSION['code'] = $code;
+        $_SESSION['name'] = $userName;
+        $_SESSION['email'] = $userEmail;
+        $_SESSION['password'] = $userPassRepeat;
+        header('Location: verificateemail.php');
       }
     }
   }

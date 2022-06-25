@@ -17,7 +17,6 @@ if (isset($_SESSION['accredited'])) {
     'email' => $_SESSION['accredited']
   ));
   $nameUser = $getName->fetchAll();
-  
 }
 ?>
 
