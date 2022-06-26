@@ -12,21 +12,32 @@ require_once 'config/database.php';
     if(!empty($userCode)) {
       if (strlen($userCode) == 4) {
         $realCode = $_SESSION['code'];
-        if($realCode == $userCode) {
-          /* Get Credentials */
-          /* Set credentials */
-          $stmt = $conn->prepare(
-            "INSERT INTO `users` (`id`, `name`, `email`, `pass`) VALUES (NULL, :nameUser, :emailUser, :passUser);"
-          );
-          $stmt->execute(array(
-            'nameUser' => $_SESSION['name'],
-            'emailUser' => $_SESSION['email'],
-            'passUser' => $_SESSION['password']
-          ));
-          $_SESSION = array();
-          header('Location: index.php');
-        } else {
-          $errorReporter = "Incorrect code";
+        switch ($_SESSION['option']) {
+          case 'registeruser':
+            if($realCode == $userCode) {
+              /* Set credentials */
+              $stmt = $conn->prepare(
+                "INSERT INTO `users` (`id`, `name`, `email`, `pass`) VALUES (NULL, :nameUser, :emailUser, :passUser);"
+              );
+              $stmt->execute(array(
+                'nameUser' => $_SESSION['name'],
+                'emailUser' => $_SESSION['email'],
+                'passUser' => $_SESSION['password']
+              ));
+              $_SESSION = array();
+              header('Location: index.php');
+            } else {
+              $errorReporter = "Incorrect code";
+            }
+            break;
+          case 'forgotpassword':
+            if($realCode == $userCode) {
+              $_SESSION['door'] = 'accessToChangeYourPass';
+              header('Location: changepass.php');
+            } else {
+              $errorReporter = "Incorrect code";
+            }
+          break;
         }
       } else {
         $errorReporter = "Incomplete characters";

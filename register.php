@@ -28,14 +28,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       if($result != false) {
         $errorReporter = 'This email already registered';
       } else { // Verificate Gmail
-        
         $code = rand(1000, 9999);
-        verificateEmail($userEmail, $code, $userName);
+        $subject = 'Verify your email';
+        $reason = 'Hello ' . $userName . ' your code to verificate your email is: ' . $code;
+        $title = 'Register code';
+        verificateEmail($userEmail, $reason, $subject, $title);
         $_SESSION['code'] = $code;
         $_SESSION['name'] = $userName;
         $_SESSION['email'] = $userEmail;
         $_SESSION['password'] = $userPassRepeat;
-        header('Location: verificateemail.php');
+        $_SESSION['option'] = 'registeruser';
+      header('Location: verificatecode.php');
       }
     }
   }

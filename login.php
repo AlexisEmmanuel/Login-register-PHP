@@ -48,6 +48,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
       </p>
       <?php
     } ?>
+    <a href="forgfot.php">I don't remember my password</a>
   </form>
 </body>
 </html>
