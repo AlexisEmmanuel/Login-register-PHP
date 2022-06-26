@@ -3,6 +3,9 @@ session_start();
 require_once 'config/functions.php';
 require_once 'config/database.php';
 
+  if(empty($_SESSION['code'])){
+    header('Location: index.php');
+  }
   if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $userCode = $_POST['code'];
     $errorReporter = null;
