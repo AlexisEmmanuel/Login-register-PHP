@@ -50,6 +50,7 @@ if (isset($_SESSION['accredited'])) {
       <?php
   }
   ?>
+  <hr>
   <h1>Article</h1>
   <article>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi architecto repellendus
