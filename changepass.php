@@ -2,11 +2,29 @@
 
 session_start();
 $errorReporter = null;
+require_once 'config/database.php';
 if(empty($_SESSION['door'])) {
   header('Location: index.php');
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  
+  $passwordNew = $_POST['pass'];
+  $passwordNewRepeat = $_POST['repeatPass'];
+  $passwordNew = hash('sha512', $passwordNew); /* Hash password */
+  $passwordNewRepeat = hash('sha512', $passwordNewRepeat); /* Hash password */
+  if(!empty($passwordNew) && !empty($passwordNewRepeat)){
+    $emailToChangePass =  $_SESSION['email'];
+    $stmt = $conn->prepare(
+      "UPDATE `users` SET `pass` = :newPass WHERE `users`.`email` = :email"
+    );
+    $stmt -> execute(array(
+      ':email' => $emailToChangePass,
+      ':newPass' => $passwordNewRepeat
+    ));
+    $_SESSION[] = array();
+    header('Location: index.php');
+  } else {
+    $errorReporter = "Don't leave empty spaces";
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -19,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-    <input type="password" name="pass">
-    <input type="password" name="repeatPass">
+    <input type="password" name="pass" placeholder="Password">
+    <input type="password" name="repeatPass" placeholder="Repeat password">
     <input type="submit" value="Change password">
   </form>
   <?php if($_SERVER['REQUEST_METHOD'] == 'POST'){ ?>
