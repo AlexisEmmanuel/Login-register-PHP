@@ -23,7 +23,7 @@ if (isset($_SESSION['accredited'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <?php require_once './templates/head.php'; ?>
   <title>Home Login & Register</title>
 </head>
 <body>
