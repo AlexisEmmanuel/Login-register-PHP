@@ -18,14 +18,14 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
     $result = $stmt->fetch();
     if ($result == true) {
       $code = rand(1000, 9999);
-      $title = 'Password support';
+      $title = 'Forgot password';
       $subject = 'Recuperate your account';
       $reason = 'Recuperate your account with this code: ' . $code;
       verificateEmail($emailRecuperate, $reason, $subject, $title);
       $_SESSION['email'] = $emailRecuperate;
       $_SESSION['code'] = $code;
       $_SESSION['option'] = 'forgotpassword';
-      header('Location: verificatecode.php');
+      header('Location: verifycode.php');
     } else {
       $errorReporter = 'This email doesnt exist';
     }

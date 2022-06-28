@@ -45,8 +45,8 @@ if (isset($_SESSION['accredited'])) {
     <?php
   } else {
     ?>
-    <h1>don't you're logged</h1>
-    <p>try <a href="login.php">Login</a> or <a href="register.php">Register</a></p>
+    <h1>Don't you're logged</h1>
+    <p>Try <a href="login.php">Login</a> or <a href="register.php">Register</a></p>
       <?php
   }
   ?>

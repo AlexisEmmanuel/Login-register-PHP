@@ -38,7 +38,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $_SESSION['email'] = $userEmail;
         $_SESSION['password'] = $userPassRepeat;
         $_SESSION['option'] = 'registeruser';
-        header('Location: verificatecode.php');
+        header('Location: verifycode.php');
       }
     }
   }

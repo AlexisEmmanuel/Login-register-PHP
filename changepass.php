@@ -9,19 +9,23 @@ if(empty($_SESSION['door'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $passwordNew = $_POST['pass'];
   $passwordNewRepeat = $_POST['repeatPass'];
-  $passwordNew = hash('sha512', $passwordNew); /* Hash password */
-  $passwordNewRepeat = hash('sha512', $passwordNewRepeat); /* Hash password */
   if(!empty($passwordNew) && !empty($passwordNewRepeat)){
-    $emailToChangePass =  $_SESSION['email'];
-    $stmt = $conn->prepare(
-      "UPDATE `users` SET `pass` = :newPass WHERE `users`.`email` = :email"
-    );
-    $stmt -> execute(array(
-      ':email' => $emailToChangePass,
-      ':newPass' => $passwordNewRepeat
-    ));
-    $_SESSION[] = array();
-    header('Location: index.php');
+    $passwordNew = hash('sha512', $passwordNew); /* Hash password */
+    $passwordNewRepeat = hash('sha512', $passwordNewRepeat); /* Hash password */
+    if ($passwordNew == $passwordNewRepeat) {
+      $emailToChangePass =  $_SESSION['email'];
+      $stmt = $conn->prepare(
+        "UPDATE `users` SET `pass` = :newPass WHERE `users`.`email` = :email"
+      );
+      $stmt -> execute(array(
+        ':email' => $emailToChangePass,
+        ':newPass' => $passwordNewRepeat
+      ));
+      $_SESSION[] = array();
+      header('Location: index.php');
+    } else {
+      $errorReporter = "Passwords dont match";
+    }
   } else {
     $errorReporter = "Don't leave empty spaces";
   }
