@@ -54,6 +54,10 @@ require_once 'config/database.php';
   <title>Verificate your email</title>
 </head>
 <body>
+  <div class="container">
+
+    <h1>Check your email and insert your code</h1>
+    <hr class="hr">
   <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
     <input type="number" placeholder="Set your code" name="code" value="<?php if($_SERVER['REQUEST_METHOD'] == 'POST') { echo $userCode; } ?>">
     <input type="submit" value="Verificate">
@@ -63,5 +67,6 @@ require_once 'config/database.php';
       </p>
     <?php } ?>
   </form>
+</div>
 </body>
 </html>

@@ -41,14 +41,18 @@ if($_SERVER['REQUEST_METHOD']=='POST') {
   <title>Forgot password</title>
 </head>
 <body>
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-    <input type="email" name="email" placeholder="Insert your email">
-    <input type="submit" value="Recuperate">
-    <? if($_SERVER['REQUEST_METHOD']=='POST'){ ?>
-      <p>
-        <?php echo $errorReporter; ?>
-      </p>
-    <? } ?>
-  </form>
+  <div class="container">
+    <h1>Enter your email to continue</h1>
+    <hr class="hr">
+      <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+        <input type="email" name="email" placeholder="Insert your email">
+        <input type="submit" value="Recuperate">
+        <? if($_SERVER['REQUEST_METHOD']=='POST'){ ?>
+          <p>
+            <?php echo $errorReporter; ?>
+          </p>
+        <? } ?>
+      </form>
+    </div>
 </body>
 </html>
