@@ -82,7 +82,7 @@ form input:focus {
   outline: none;
 }
 form input[type='submit'] {
-  width: 130px;
+  width: 200px;
   margin-bottom: 30px;
   cursor: pointer;
 }

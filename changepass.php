@@ -38,15 +38,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <title>Create your new password</title>
 </head>
 <body>
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+  <div class="container">
+
+    <h1>Create a new password</h1>
+    <hr class="hr">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
     <input type="password" name="pass" placeholder="Password">
     <input type="password" name="repeatPass" placeholder="Repeat password">
     <input type="submit" value="Change password">
+    <?php if($_SERVER['REQUEST_METHOD'] == 'POST'){ ?>
+      <p>
+        <?php echo $errorReporter; ?>
+      </p>
+      <?php } ?>
   </form>
-  <?php if($_SERVER['REQUEST_METHOD'] == 'POST'){ ?>
-    <p>
-      <?php echo $errorReporter; ?>
-    </p>
-  <?php } ?>
+  </div>
 </body>
 </html>
