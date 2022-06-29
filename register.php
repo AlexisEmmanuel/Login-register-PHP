@@ -51,18 +51,21 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <title>Register for Users</title>
 </head>
 <body>
-  <h1>Register Page</h1>
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
-    <input type="text" placeholder="User name" name="userName">
-    <input type="email" placeholder="User email" name="userEmail">
-    <input type="password" placeholder="User password" name="userPass">
-    <input type="password" placeholder="Repeat user password" name="userPassRepeat">
-    <input type="submit" value="Register">
-    <?php
-    if (!empty($errorReporter)) {
-      echo $errorReporter;
-    }
-    ?>
+  <div class="container">
+    <h1>Register Page</h1>
+    <hr class="hr">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+      <input type="text" placeholder="User name" name="userName">
+      <input type="email" placeholder="User email" name="userEmail">
+      <input type="password" placeholder="User password" name="userPass">
+      <input type="password" placeholder="Repeat user password" name="userPassRepeat">
+      <input type="submit" value="Register">
+      <?php
+      if (!empty($errorReporter)) {
+        echo $errorReporter;
+      }
+      ?>
   </form>
+</div>
 </body>
 </html>
