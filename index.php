@@ -49,7 +49,7 @@ if (isset($_SESSION['accredited'])) {
         ?>
         <h1>Don't you're logged</h1>
         <p>Try <a href="login.php">Login</a> or <a href="register.php">Register</a></p>
-          <?php
+        <?php
       }
       ?>
     </div>
