@@ -34,10 +34,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
   <title>Login for users</title>
 </head>
 <body>
-  <h1>Login for users</h1>
-  <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-    <input type="email" placeholder="Intert you email" name="userEmail">
-    <input type="password" placeholder="Intert you password" name="userPass">
+  <div class="container">
+
+    <h1>Login for users</h1>
+    <hr class="hr">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+    <input type="email" placeholder="Intert your email" name="userEmail">
+    <input type="password" placeholder="Intert your password" name="userPass">
     <input type="submit" value="Login">
     <?php if(!empty($errorReporter)){
       ?>
@@ -48,5 +51,6 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     } ?>
     <a href="forgot.php">I don't remember my password</a>
   </form>
+</div>
 </body>
 </html>

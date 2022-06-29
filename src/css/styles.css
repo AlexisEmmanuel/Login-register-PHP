@@ -2,6 +2,8 @@
   --bg-color-1: #f2f2f2;
   --bg-color-2: rgb(255, 255, 255);
   --bg-color-3: rgb(251, 251, 251);
+  --bg-color-4: rgb(167, 43, 43);
+  --bg-color-5: rgb(19, 19, 19);
   --color: #444;
   --color-2: rgb(62, 194, 134);
   --font-size: 120%;
@@ -55,4 +57,39 @@ hr {
 }
 .text-content {
   text-align: center;
+}
+h1 {
+  text-align: center;
+}
+form {
+  display: inline-flex;
+  flex-direction: column;
+  width: 340px;
+  margin: 0 auto;
+}
+form input {
+  padding: .6em;
+  margin: 6px 0;
+  border: 1px solid var(--bg-color-1);
+  font-size: 100%;
+  border-radius: 5px;
+}
+form input:focus {
+  border: 1.5px solid var(--bg-color-5);
+  outline: none;
+}
+form input[type='submit'] {
+  width: 130px;
+  cursor: pointer;
+}
+form p {
+  text-align: center;
+  background-color: var(--bg-color-4);
+  color: var(--bg-color-2);
+}
+.hr {
+  margin: 0 auto;
+  width: 70px;
+  border: 3px solid;
+  margin-bottom: 30px;
 }
